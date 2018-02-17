@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package org.usfirst.frc.team2129.robot.commands;
+package org.usfirst.frc.team2129.robot.commands.manual;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -29,7 +29,7 @@ public class ManualDriveCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.s_DriveSubsystem.drive(-OI.translateStick.getX(), OI.translateStick.getY(), -OI.rotateStick
+		Robot.s_DriveSubsystem.stdMecanumDrive(-OI.leftStick.getX(), OI.leftStick.getY(), -OI.rightStick
 				.getX()/2);
 	}
 

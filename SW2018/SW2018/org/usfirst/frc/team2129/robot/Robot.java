@@ -7,6 +7,7 @@
 
 package org.usfirst.frc.team2129.robot;
 
+import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.LifterSubsystem;
@@ -25,6 +26,7 @@ public class Robot extends TimedRobot {
 	public static final DriveSubsystem s_DriveSubsystem   = new DriveSubsystem();
 	public static final LifterSubsystem s_LifterSubsystem = new LifterSubsystem();
 	public static final IntakeSubsystem s_IntakeSubsystem = new IntakeSubsystem();
+	public static final ClimberSubsystem s_ClimberSubsystem = new ClimberSubsystem();
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.

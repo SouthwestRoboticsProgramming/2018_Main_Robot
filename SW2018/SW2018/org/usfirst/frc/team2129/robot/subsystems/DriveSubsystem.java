@@ -8,7 +8,8 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
 import org.usfirst.frc.team2129.robot.RobotMap;
-import org.usfirst.frc.team2129.robot.commands.ManualDriveCommand;
+import org.usfirst.frc.team2129.robot.commands.manual.AlexManualDriveCommand;
+import org.usfirst.frc.team2129.robot.commands.manual.ManualDriveCommand;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -29,11 +30,19 @@ public class DriveSubsystem extends Subsystem {
 	private RobotDrive      drive      = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
 
 	public void initDefaultCommand() {
+		drive.setSafetyEnabled(false);
 		// Set the default command for a subsystem here.
-		 setDefaultCommand(new ManualDriveCommand());
+		 setDefaultCommand(new AlexManualDriveCommand());
 	}
 	
-	public void drive(double x, double y, double t) {
+	public void stdMecanumDrive(double x, double y, double t) {
 		drive.mecanumDrive_Cartesian(x, -y, t, 0);
+	}
+	
+	public void rawDrive(double frontleft, double backleft, double frontright, double backright) {
+		frontLeft.set(frontleft);
+		frontRight.set(frontright);
+		backLeft.set(backleft);
+		backRight.set(backright);
 	}
 }

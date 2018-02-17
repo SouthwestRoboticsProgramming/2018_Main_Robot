@@ -7,14 +7,33 @@
 
 package org.usfirst.frc.team2129.robot;
 
+import org.usfirst.frc.team2129.robot.commands.manual.AlexManualDriveCommand;
+import org.usfirst.frc.team2129.robot.commands.manual.ManualDriveCommand;
+import org.usfirst.frc.team2129.robot.commands.semiauto.MoveElevatorToBottomCommand;
+import org.usfirst.frc.team2129.robot.commands.semiauto.MoveElevatorToTargetCommand;
+
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	public static Joystick translateStick = new Joystick(0);
-	public static Joystick rotateStick    = new Joystick(1);
-	public static Joystick lifterStick    = new Joystick(2);
+	public static GenericHID leftStick = new Joystick(0);
+	public static GenericHID rightStick    = new Joystick(1);
+	public static GenericHID lifterStick    = new Joystick(2);
+	
+	static {
+		new JoystickButton(lifterStick, 6).whenPressed(new MoveElevatorToTargetCommand(170.3));
+		new JoystickButton(lifterStick, 7).whenPressed(new MoveElevatorToTargetCommand(95));
+		new JoystickButton(lifterStick, 8).whenPressed(new MoveElevatorToBottomCommand());
+		
+		new JoystickButton(leftStick, 8).whenPressed(new ManualDriveCommand());
+		new JoystickButton(leftStick, 9).whenPressed(new AlexManualDriveCommand());
+		
+		new Compressor(0).setClosedLoopControl(true);
+	}
 }

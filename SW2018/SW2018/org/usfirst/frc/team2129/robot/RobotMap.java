@@ -7,6 +7,8 @@
 
 package org.usfirst.frc.team2129.robot;
 
+import org.usfirst.frc.team2129.util.encoderdesc.IEncoderDescriptor;
+import org.usfirst.frc.team2129.util.encoderdesc.QuadratureEncoderDescriptor;
 import org.usfirst.frc.team2129.util.motordesc.CANMotorDescriptor;
 import org.usfirst.frc.team2129.util.motordesc.MotorDescriptor;
 import org.usfirst.frc.team2129.util.motordesc.PWMMotorDescriptor;
@@ -21,10 +23,18 @@ public class RobotMap {
 	
 	public static MotorDescriptor lifterMotor      = new CANMotorDescriptor(20);
 	
-	public static MotorDescriptor leftIntakeMotor  = new PWMMotorDescriptor(0, true);
-	public static MotorDescriptor rightIntakeMotor = new PWMMotorDescriptor(1, true);
+	public static MotorDescriptor leftIntakeMotor  = new PWMMotorDescriptor(8);
+	public static MotorDescriptor rightIntakeMotor = new PWMMotorDescriptor(9, true);
 	
-	public static int grabberSolenoid              = 7;
+	public static MotorDescriptor leftArmMotor     = new PWMMotorDescriptor(7, true);
+	public static MotorDescriptor rightArmMotor    = new PWMMotorDescriptor(6);
+	
+	public static MotorDescriptor climberMotor     = new PWMMotorDescriptor(5);
+	
+	public static IEncoderDescriptor climberEncoder= new QuadratureEncoderDescriptor(0, 1);
+	
+	public static int grabberSolenoid              = 7; //PCM
+	public static int lowerLimitSwitch             = 2; //PWM
 	
 	static {
 		new Compressor(0).setClosedLoopControl(true);

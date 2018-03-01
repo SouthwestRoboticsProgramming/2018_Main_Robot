@@ -19,8 +19,8 @@ public class ManualClimberCommand extends Command {
 	}
 	
 	protected void execute() {
-		SmartDashboard.putNumber("climber_enc_pos", Robot.s_ClimberSubsystem.climberEncoder.getDistance());
-		Robot.s_ClimberSubsystem.setLifter(OI.rightStick.getRawAxis(2));
+//		SmartDashboard.putNumber("climber_enc_pos", Robot.s_ClimberSubsystem.climberEncoder.getDistance());
+		Robot.s_ClimberSubsystem.setLifter(OI.lifterStick.getY());
 	}
 
 }

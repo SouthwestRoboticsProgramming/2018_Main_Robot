@@ -36,10 +36,10 @@ public class MoveElevatorToTargetCommand extends PIDCommand {
 		
 		SmartDashboard.putNumber("lifter_pid_distance", this.getPIDController().getError());
 		
-		if(OI.lifterStick.getRawButton(2)) this.setSetpointRelative(OI.lifterStick.getY()*3);
+//		if(OI.lifterStick.getRawButton(2)) this.setSetpointRelative(OI.lifterStick.getY()*3);
 		SmartDashboard.putNumber("lifter_pid_target", this.getPIDController().getSetpoint());
 		
-		Robot.s_LifterSubsystem.setGrabber(OI.lifterStick.getRawButton(1));
+//		Robot.s_LifterSubsystem.setGrabber(OI.eitherStickButton(1));
 	}
 
 	@Override
@@ -65,6 +65,6 @@ public class MoveElevatorToTargetCommand extends PIDCommand {
 
 	@Override
 	protected boolean isFinished() {
-		return OI.lifterStick.getRawButton(4);
+		return OI.eitherStickButton(11);
 	}
 }

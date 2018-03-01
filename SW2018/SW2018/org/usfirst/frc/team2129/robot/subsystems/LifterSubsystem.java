@@ -14,8 +14,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class LifterSubsystem extends Subsystem {
 	
 	SpeedController lifterMotor   = RobotMap.lifterMotor.get();
-	Solenoid        grabberPiston = new Solenoid(RobotMap.grabberSolenoid);
+	
 	DigitalInput    lowerLimit    = new DigitalInput(RobotMap.lowerLimitSwitch);
+	DigitalInput    upperLimit    = new DigitalInput(RobotMap.upperLimitSwitch);
 	public TFMini   lidar         = new TFMini(SerialPort.Port.kMXP);
 	
 	
@@ -26,19 +27,26 @@ public class LifterSubsystem extends Subsystem {
 	@Override
 	protected void initDefaultCommand() {
 		// TODO Auto-generated method stub
-		setDefaultCommand(new ManualLifterCommand());
+//		setDefaultCommand(new ManualLifterCommand());
 	}
 	
 	public void setLiferRaw(double v) {
+		if(getUpperLimit()) v = Math.min(v, 0.05);
+		if(getLowerLimit()) v = Math.max(v,  0);
 		lifterMotor.set(v);
+		
+		SmartDashboard.putNumber("lifter_actual_drive", v);
+		SmartDashboard.putBoolean("lifter_actual_high_limit", getUpperLimit());
+		SmartDashboard.putBoolean("lifter_actual_low_limit",  getLowerLimit());
 	}
 	
-	public void setGrabber(boolean v) {
-		grabberPiston.set(v);
-	}
+	
 	
 	public boolean getLowerLimit() {
-		
 		return lowerLimit.get();
+	}
+	
+	public boolean getUpperLimit() {
+		return upperLimit.get();
 	}
 }

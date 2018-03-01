@@ -9,7 +9,8 @@ package org.usfirst.frc.team2129.robot;
 
 import org.usfirst.frc.team2129.robot.commands.manual.AlexManualDriveCommand;
 import org.usfirst.frc.team2129.robot.commands.manual.ManualDriveCommand;
-import org.usfirst.frc.team2129.robot.commands.semiauto.MoveElevatorToBottomCommand;
+import org.usfirst.frc.team2129.robot.commands.semiauto.ElevatorDownCommand;
+import org.usfirst.frc.team2129.robot.commands.semiauto.ElevatorUpCommand;
 import org.usfirst.frc.team2129.robot.commands.semiauto.MoveElevatorToTargetCommand;
 
 import edu.wpi.first.wpilibj.Compressor;
@@ -26,14 +27,16 @@ public class OI {
 	public static GenericHID rightStick    = new Joystick(1);
 	public static GenericHID lifterStick    = new Joystick(2);
 	
-	static {
-		new JoystickButton(lifterStick, 6).whenPressed(new MoveElevatorToTargetCommand(170.3));
-		new JoystickButton(lifterStick, 7).whenPressed(new MoveElevatorToTargetCommand(95));
-		new JoystickButton(lifterStick, 8).whenPressed(new MoveElevatorToBottomCommand());
-		
+	static {		
 		new JoystickButton(leftStick, 8).whenPressed(new ManualDriveCommand());
 		new JoystickButton(leftStick, 9).whenPressed(new AlexManualDriveCommand());
+		new JoystickButton(leftStick, 3).whileHeld(new ElevatorUpCommand());
+		new JoystickButton(leftStick, 2).whileHeld(new ElevatorDownCommand());
 		
 		new Compressor(0).setClosedLoopControl(true);
+	}
+	
+	public static boolean eitherStickButton(int b) {
+		return leftStick.getRawButton(b) || rightStick.getRawButton(b);
 	}
 }

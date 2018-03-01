@@ -9,7 +9,6 @@ package org.usfirst.frc.team2129.robot.subsystems;
 
 import org.usfirst.frc.team2129.robot.RobotMap;
 import org.usfirst.frc.team2129.robot.commands.manual.AlexManualDriveCommand;
-import org.usfirst.frc.team2129.robot.commands.manual.ManualDriveCommand;
 
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;

@@ -19,9 +19,9 @@ public class ManualLifterCommand extends Command {
 	}
 	
 	public void execute() {
-		Robot.s_LifterSubsystem.setLiferRaw(OI.lifterStick.getY());
-		Robot.s_LifterSubsystem.setGrabber(OI.lifterStick.getRawButton(1));
-		SmartDashboard.putBoolean("lifter_lowerlimit", Robot.s_LifterSubsystem.getLowerLimit());
+		if(OI.eitherStickButton(3)) Robot.s_LifterSubsystem.setLiferRaw(1);
+		else if(OI.eitherStickButton(2)) Robot.s_LifterSubsystem.setLiferRaw(-1);
+		else Robot.s_LifterSubsystem.setLiferRaw(0);
 		
 		Robot.s_LifterSubsystem.lidar.poll();
 		

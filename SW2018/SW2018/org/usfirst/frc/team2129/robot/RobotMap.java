@@ -24,7 +24,7 @@ public class RobotMap {
 	public static MotorDescriptor lifterMotor      = new CANMotorDescriptor(20);
 	
 	public static MotorDescriptor leftIntakeMotor  = new PWMMotorDescriptor(8);
-	public static MotorDescriptor rightIntakeMotor = new PWMMotorDescriptor(9, true);
+	public static MotorDescriptor rightIntakeMotor = new PWMMotorDescriptor(9);
 	
 	public static MotorDescriptor leftArmMotor     = new PWMMotorDescriptor(7, true);
 	public static MotorDescriptor rightArmMotor    = new PWMMotorDescriptor(6);
@@ -33,8 +33,11 @@ public class RobotMap {
 	
 	public static IEncoderDescriptor climberEncoder= new QuadratureEncoderDescriptor(0, 1);
 	
-	public static int grabberSolenoid              = 7; //PCM
+	
 	public static int lowerLimitSwitch             = 2; //PWM
+	public static int upperLimitSwitch             = 3; //PWM
+	
+	public static int grabberSolenoid              = 7; //PCM
 	
 	static {
 		new Compressor(0).setClosedLoopControl(true);

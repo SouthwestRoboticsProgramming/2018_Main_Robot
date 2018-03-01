@@ -7,12 +7,19 @@
 
 package org.usfirst.frc.team2129.robot;
 
+import org.usfirst.frc.team2129.robot.commands.auto.AutoDriveCommand;
+import org.usfirst.frc.team2129.robot.commands.auto.AutoMasterCommand;
+import org.usfirst.frc.team2129.robot.commands.auto.JustDriveForwardCommand;
 import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.IntakeSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.LifterSubsystem;
+import org.usfirst.frc.team2129.robot.subsystems.LightsSubsystem;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
@@ -27,6 +34,8 @@ public class Robot extends TimedRobot {
 	public static final LifterSubsystem s_LifterSubsystem = new LifterSubsystem();
 	public static final IntakeSubsystem s_IntakeSubsystem = new IntakeSubsystem();
 	public static final ClimberSubsystem s_ClimberSubsystem = new ClimberSubsystem();
+	public static final LightsSubsystem s_LightsSubsystem = new LightsSubsystem();
+	public static Command autoCommand;
 	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
@@ -63,6 +72,13 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousInit() {
+		String ourSide = Preferences.getInstance().getString("auto_side", "");
+		String m = DriverStation.getInstance().getGameSpecificMessage();
+		autoCommand = new JustDriveForwardCommand(ourSide);
+//		if(m.length()>0 && ourSide.length()>0) {
+//			if(m.charAt(0)==ourSide.charAt(0)) autoCommand = new AutoMasterCommand(ourSide);
+//		}		
+		autoCommand.start();
 	}
 
 	/**
@@ -70,11 +86,13 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		if(!autoCommand.isRunning()) autoCommand.start();
 		Scheduler.getInstance().run();
 	}
 
 	@Override
 	public void teleopInit() {
+		if(autoCommand!=null) autoCommand.cancel();
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
@@ -86,6 +104,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void teleopPeriodic() {
+		if(autoCommand!=null) autoCommand.cancel();
 		Scheduler.getInstance().run();
 	}
 

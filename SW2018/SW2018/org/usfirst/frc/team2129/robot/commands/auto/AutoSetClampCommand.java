@@ -5,9 +5,8 @@ import org.usfirst.frc.team2129.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class AutoSetClampCommand extends Command {
-	
-	boolean toSetTo;
-	
+	private boolean toSetTo; // grabber on or off
+
 	public AutoSetClampCommand(boolean s) {
 		toSetTo = s;
 		requires(Robot.s_IntakeSubsystem);
@@ -15,12 +14,10 @@ public class AutoSetClampCommand extends Command {
 
 	@Override
 	protected boolean isFinished() {
-		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	public void execute() {
 		Robot.s_IntakeSubsystem.setGrabber(toSetTo);
 	}
-
 }

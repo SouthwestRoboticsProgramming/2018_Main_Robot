@@ -8,15 +8,15 @@ import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class ClimberSubsystem extends Subsystem {
-	
-	public IEncoder climberEncoder = RobotMap.climberEncoder.get();
-	SpeedController climberMotor   = RobotMap.climberMotor.get();
+	private IEncoder climberEncoder = RobotMap.climberEncoder.get();
+	private SpeedController climberMotor = RobotMap.climberMotor.get();
 
 	@Override
 	protected void initDefaultCommand() {
 		setDefaultCommand(new ManualClimberCommand());
 	}
-	
-	public void setLifter(double v) {climberMotor.set(v);}
 
+	public void setLifter(double speed) {
+		climberMotor.set(speed);
+	}
 }

@@ -7,34 +7,32 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class IntakeSubsystem extends Subsystem {
+public class IntakeSubsystem extends Subsystem {	
+	private SpeedController leftIntake = RobotMap.leftIntakeMotor.get();
+	private SpeedController rightIntake = RobotMap.rightIntakeMotor.get();
 	
-	SpeedController leftIntake = RobotMap.leftIntakeMotor.get();
-	SpeedController rightIntake = RobotMap.rightIntakeMotor.get();
+	private SpeedController leftArm = RobotMap.leftArmMotor.get();
+	private SpeedController rightArm = RobotMap.rightArmMotor.get();
 	
-	SpeedController leftArm = RobotMap.leftArmMotor.get();
-	SpeedController rightArm = RobotMap.rightArmMotor.get();
-	
-	Solenoid        grabberPiston = new Solenoid(RobotMap.grabberSolenoid);
+	private Solenoid        grabberPiston = new Solenoid(RobotMap.grabberSolenoid);
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
 		setDefaultCommand(new ManualIntakeCommand());
 	}
 
-	public void setIntakesRaw(double v, double v2) {
-		leftIntake.set(v);
-		rightIntake.set(v2);
+	public void setIntakesRaw(double leftSpeed, double rightSpeed) {
+		leftIntake.set(leftSpeed);
+		rightIntake.set(rightSpeed);
 	}
 	
-	public void setArmsRaw(double d, double d2) {
-		leftArm.set(d);
-		rightArm.set(d2);
+	public void setArmsRaw(double leftSpeed, double rightSpeed) {
+		leftArm.set(leftSpeed);
+		rightArm.set(rightSpeed);
 	}
 	
-	public void setGrabber(boolean v) {
-		grabberPiston.set(v);
+	public void setGrabber(boolean onOrOff) {
+		grabberPiston.set(onOrOff);
 	}
 
 }

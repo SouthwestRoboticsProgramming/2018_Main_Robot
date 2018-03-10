@@ -15,7 +15,9 @@ import org.usfirst.frc.team2129.util.motordesc.PWMMotorDescriptor;
 
 import edu.wpi.first.wpilibj.Compressor;
 
-public class RobotMap implements IRobotMap {
+// R2 Test Robot
+
+public class R2RobotMap implements IRobotMap {
 	private MotorDescriptor frontLeft        = new CANMotorDescriptor(10);
 	private MotorDescriptor frontRight       = new CANMotorDescriptor(12, true);
 	private MotorDescriptor backLeft         = new CANMotorDescriptor(11);
@@ -107,5 +109,4 @@ public class RobotMap implements IRobotMap {
 	public static RobotMap getCurrentRobotMap() {
 		return CurrentRobotMap;
 	}
-	
 }

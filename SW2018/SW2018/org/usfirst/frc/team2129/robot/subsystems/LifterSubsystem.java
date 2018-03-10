@@ -2,7 +2,7 @@ package org.usfirst.frc.team2129.robot.subsystems;
 
 import org.usfirst.frc.team2129.robot.DashboardAware;
 import org.usfirst.frc.team2129.robot.PreferenceAware;
-import org.usfirst.frc.team2129.robot.RobotMap;
+import org.usfirst.frc.team2129.robot.RobotMapAware;
 import org.usfirst.frc.team2129.util.tfmini.TFMini;
 
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -10,10 +10,10 @@ import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class LifterSubsystem extends Subsystem implements PreferenceAware, DashboardAware {
-	private SpeedController lifterMotor = RobotMap.lifterMotor.get();
-	private DigitalInput lowerLimit = new DigitalInput(RobotMap.lowerLimitSwitch);
-	private DigitalInput upperLimit = new DigitalInput(RobotMap.upperLimitSwitch);
+public class LifterSubsystem extends Subsystem implements PreferenceAware, DashboardAware, RobotMapAware {	
+	private SpeedController lifterMotor = getLifterMotor().get();
+	private DigitalInput lowerLimit = new DigitalInput(getLowerLimitSwitch());
+	private DigitalInput upperLimit = new DigitalInput(getUpperLimitSwitch());
 	public TFMini lidar = new TFMini(SerialPort.Port.kMXP);
 
 	public LifterSubsystem() {

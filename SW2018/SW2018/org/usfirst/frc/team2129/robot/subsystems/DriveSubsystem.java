@@ -7,7 +7,7 @@
 
 package org.usfirst.frc.team2129.robot.subsystems;
 
-import org.usfirst.frc.team2129.robot.RobotMap;
+import org.usfirst.frc.team2129.robot.RobotMapAware;
 import org.usfirst.frc.team2129.robot.commands.manual.AlexManualDriveCommand;
 
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -18,14 +18,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 @SuppressWarnings("deprecation")
-public class DriveSubsystem extends Subsystem {
+public class DriveSubsystem extends Subsystem implements RobotMapAware {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.4
 	
-	SpeedController frontLeft  = RobotMap.frontLeft.get();
-	SpeedController backLeft   = RobotMap.backLeft.get();
-	SpeedController frontRight = RobotMap.frontRight.get();
-	SpeedController backRight  = RobotMap.backRight.get();
+	SpeedController frontLeft  = getFrontLeft().get();
+	SpeedController backLeft   = getBackLeft().get();
+	SpeedController frontRight = getFrontRight().get();
+	SpeedController backRight  = getBackRight().get();
 	private RobotDrive      drive      = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
 
 	public void initDefaultCommand() {

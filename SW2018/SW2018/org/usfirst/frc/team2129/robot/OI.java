@@ -11,7 +11,6 @@ import org.usfirst.frc.team2129.robot.commands.manual.AlexManualDriveCommand;
 import org.usfirst.frc.team2129.robot.commands.manual.ManualDriveCommand;
 import org.usfirst.frc.team2129.robot.commands.semiauto.ElevatorDownCommand;
 import org.usfirst.frc.team2129.robot.commands.semiauto.ElevatorUpCommand;
-import org.usfirst.frc.team2129.robot.commands.semiauto.MoveElevatorToTargetCommand;
 
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;

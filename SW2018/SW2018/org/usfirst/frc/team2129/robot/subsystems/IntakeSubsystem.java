@@ -1,20 +1,20 @@
 package org.usfirst.frc.team2129.robot.subsystems;
 
-import org.usfirst.frc.team2129.robot.RobotMap;
+import org.usfirst.frc.team2129.robot.RobotMapAware;
 import org.usfirst.frc.team2129.robot.commands.manual.ManualIntakeCommand;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class IntakeSubsystem extends Subsystem {	
-	private SpeedController leftIntake = RobotMap.leftIntakeMotor.get();
-	private SpeedController rightIntake = RobotMap.rightIntakeMotor.get();
+public class IntakeSubsystem extends Subsystem implements RobotMapAware {	
+	private SpeedController leftIntake = getLeftIntakeMotor().get();
+	private SpeedController rightIntake = getRightIntakeMotor().get();
 	
-	private SpeedController leftArm = RobotMap.leftArmMotor.get();
-	private SpeedController rightArm = RobotMap.rightArmMotor.get();
+	private SpeedController leftArm = getLeftArmMotor().get();
+	private SpeedController rightArm = getRightArmMotor().get();
 	
-	private Solenoid        grabberPiston = new Solenoid(RobotMap.grabberSolenoid);
+	private Solenoid        grabberPiston = new Solenoid(getGrabberSolenoid());
 
 	@Override
 	protected void initDefaultCommand() {

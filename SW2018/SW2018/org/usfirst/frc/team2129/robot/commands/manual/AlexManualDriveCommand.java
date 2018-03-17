@@ -1,11 +1,12 @@
 package org.usfirst.frc.team2129.robot.commands.manual;
 
+import org.usfirst.frc.team2129.robot.Logger;
 import org.usfirst.frc.team2129.robot.OI;
 import org.usfirst.frc.team2129.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class AlexManualDriveCommand extends Command {
+public class AlexManualDriveCommand extends Command implements Logger {
 
 	public AlexManualDriveCommand() {
 		requires(Robot.s_DriveSubsystem);
@@ -17,35 +18,50 @@ public class AlexManualDriveCommand extends Command {
 	}
 
 	protected void execute() {
-		double leftStickY = OI.leftStick.getY();
-		double rightStickY = OI.rightStick.getY();
-		double leftStickX = OI.leftStick.getX();
-		double rightStickX = OI.rightStick.getX();
 
-		double frontLeft = leftStickY;
-		double backLeft = leftStickY;
-		double frontRight = rightStickY;
-		double backRight = rightStickY;
+//		Robot.s_DriveSubsystem.stdMecanumDrive(-OI.leftStick.getX(), OI.leftStick.getY(), -OI.rightStick
+//				.getX()/2);
+		
+		try {
+			double leftStickY = OI.leftStick.getY();
+			double rightStickY = OI.rightStick.getY();
+			double leftStickX = OI.leftStick.getX();
+			double rightStickX = OI.rightStick.getX();
 
-		double x;
-		if (Math.abs(leftStickX) > Math.abs(rightStickX))
-			x = leftStickX;
-		else
-			x = rightStickX;
+//			log("leftSticky = " + leftStickY);
+//			log("rightStickY = " + rightStickY);
+//			log("leftStickX = " + leftStickX);
+//			log("rightStickX = " + rightStickX);
 
-		frontLeft -= x;// leftStickX;
-		backLeft += x;// leftStickX;
+			double frontLeft = leftStickY;
+			double backLeft = leftStickY;
+			double frontRight = rightStickY;
+			double backRight = rightStickY;
 
-		frontRight += x;// rightStickX;
-		backRight -= x;// rightStickX;
+			double x;
+			if (Math.abs(leftStickX) > Math.abs(rightStickX))
+				x = leftStickX;
+			else
+				x = rightStickX;
+			
+			x *= -1;
 
-		double scale = (OI.leftStick.getRawAxis(2) + 1) / 2;
-		frontLeft *= scale;
-		frontRight *= scale;
-		backLeft *= scale;
-		backRight *= scale;
+			frontLeft -= x;// leftStickX;
+			backLeft += x;// leftStickX;
 
-		Robot.s_DriveSubsystem.rawDrive(frontLeft, backLeft, frontRight, backRight);
+			frontRight += x;// rightStickX;
+			backRight -= x;// rightStickX;
+
+//			double scale = 1.0; //(OI.leftStick.getRawAxis(2) + 1) / 2;
+//			frontLeft *= scale;
+//			frontRight *= scale;
+//			backLeft *= scale;
+//			backRight *= scale;
+
+			Robot.s_DriveSubsystem.rawDrive(frontLeft, backLeft, frontRight, backRight);
+		} catch (Exception ex) {
+			log("Exception in AlexDrive: ", ex);
+		}
 	}
 
 }

@@ -7,8 +7,6 @@
 
 package org.usfirst.frc.team2129.robot;
 
-import org.usfirst.frc.team2129.robot.commands.auto.AutoDriveCommand;
-import org.usfirst.frc.team2129.robot.commands.auto.AutoMasterCommand;
 import org.usfirst.frc.team2129.robot.commands.auto.JustDriveForwardCommand;
 import org.usfirst.frc.team2129.robot.subsystems.ClimberSubsystem;
 import org.usfirst.frc.team2129.robot.subsystems.DriveSubsystem;
@@ -31,10 +29,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  */
 public class Robot extends TimedRobot {
 	public static final DriveSubsystem s_DriveSubsystem   = new DriveSubsystem();
-	public static final LifterSubsystem s_LifterSubsystem = new LifterSubsystem();
-	public static final IntakeSubsystem s_IntakeSubsystem = new IntakeSubsystem();
-	public static final ClimberSubsystem s_ClimberSubsystem = new ClimberSubsystem();
-	public static final LightsSubsystem s_LightsSubsystem = new LightsSubsystem();
+	public static final LifterSubsystem s_LifterSubsystem = null; //new LifterSubsystem();
+	public static final IntakeSubsystem s_IntakeSubsystem = null; //new IntakeSubsystem();
+	public static final ClimberSubsystem s_ClimberSubsystem = null; //new ClimberSubsystem();
+	public static final LightsSubsystem s_LightsSubsystem = null; //new LightsSubsystem();
 	public static Command autoCommand;
 	/**
 	 * This function is run when the robot is first started up and should be

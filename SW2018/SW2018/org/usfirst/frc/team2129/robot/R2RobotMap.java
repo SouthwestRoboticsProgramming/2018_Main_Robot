@@ -13,15 +13,22 @@ import org.usfirst.frc.team2129.util.motordesc.CANMotorDescriptor;
 import org.usfirst.frc.team2129.util.motordesc.MotorDescriptor;
 import org.usfirst.frc.team2129.util.motordesc.PWMMotorDescriptor;
 
-import edu.wpi.first.wpilibj.Compressor;
-
 // R2 Test Robot
-
+// 11, 20, 21, 31
 public class R2RobotMap implements IRobotMap {
-	private MotorDescriptor frontLeft        = new CANMotorDescriptor(10);
-	private MotorDescriptor frontRight       = new CANMotorDescriptor(12, true);
-	private MotorDescriptor backLeft         = new CANMotorDescriptor(11);
-	private MotorDescriptor backRight        = new CANMotorDescriptor(13, true);
+//	private MotorDescriptor frontLeft        = new CANMotorDescriptor(11, false); // this one works
+//	private MotorDescriptor frontRight       = new CANMotorDescriptor(31, true); // this flashes, but doesn't move
+//	private MotorDescriptor backLeft         = new CANMotorDescriptor(21); // rear left
+//	private MotorDescriptor backRight        = new CANMotorDescriptor(20, false); // this one works, motor #2
+	private MotorDescriptor frontLeft        = new CANMotorDescriptor(0, !false); // this one works
+	private MotorDescriptor frontRight       = new CANMotorDescriptor(1, !false); // this flashes, but doesn't move
+	private MotorDescriptor backRight        = new CANMotorDescriptor(2, !true); // this one works, motor #2
+	private MotorDescriptor backLeft         = new CANMotorDescriptor(3, !false); // rear left
+	
+//	private MotorDescriptor frontLeft        = new CANMotorDescriptor(10);
+//	private MotorDescriptor frontRight       = new CANMotorDescriptor(12, true);
+//	private MotorDescriptor backLeft         = new CANMotorDescriptor(11);
+//	private MotorDescriptor backRight        = new CANMotorDescriptor(13, true);
 	
 	private MotorDescriptor lifterMotor      = new CANMotorDescriptor(20);
 	
@@ -40,10 +47,10 @@ public class R2RobotMap implements IRobotMap {
 	
 	private int grabberSolenoid              = 7; //PCM
 	
-	private static RobotMap CurrentRobotMap = new RobotMap();
+	private static R2RobotMap CurrentRobotMap = new R2RobotMap();
 	
 	static {
-		new Compressor(0).setClosedLoopControl(true);
+//		new Compressor(0).setClosedLoopControl(true);
 	}
 
 	public static IRobotMap getCurrent() {
@@ -106,7 +113,7 @@ public class R2RobotMap implements IRobotMap {
 		return grabberSolenoid;
 	}
 
-	public static RobotMap getCurrentRobotMap() {
+	public static IRobotMap getCurrentRobotMap() {
 		return CurrentRobotMap;
 	}
 }

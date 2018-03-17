@@ -5,11 +5,14 @@ import org.usfirst.frc.team2129.util.motordesc.MotorDescriptor;
 
 public interface RobotMapAware {
 
+	// Use whatever robotMap you want
 	default IRobotMap getRobotMap() {
 		return R2RobotMap.getCurrent();
 //		return RobotMap.getCurrent();
 	}
 
+	// --------------- DRIVE MOTORS --------------- 
+	
 	default MotorDescriptor getFrontLeft() {
 		return getRobotMap().getFrontLeft();
 	}
@@ -26,10 +29,14 @@ public interface RobotMapAware {
 		return getRobotMap().getBackRight();
 	}
 
+	// --------------- LIFTERt MOTORS --------------- 
+
 	default MotorDescriptor getLifterMotor() {
 		return getRobotMap().getLifterMotor();
 	}
 
+	// --------------- INTAKE MOTORS --------------- 
+	
 	default MotorDescriptor getLeftIntakeMotor() {
 		return getRobotMap().getLeftIntakeMotor();
 	}
@@ -46,6 +53,8 @@ public interface RobotMapAware {
 		return getRobotMap().getRightArmMotor();
 	}
 
+	// --------------- CLIMBER MOTORS --------------- 
+	
 	default MotorDescriptor getClimberMotor() {
 		return getRobotMap().getClimberMotor();
 	}

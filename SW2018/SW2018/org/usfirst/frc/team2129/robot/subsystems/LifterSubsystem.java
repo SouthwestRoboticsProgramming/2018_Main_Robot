@@ -25,14 +25,14 @@ public class LifterSubsystem extends Subsystem implements PreferenceAware, Dashb
 		// setDefaultCommand(new ManualLifterCommand());
 	}
 
-	public void setLiferRaw(double v) {
+	public void setLiferRaw(double speed) {
 		if (getUpperLimit())
-			v = Math.min(v, 0.05);
+			speed = Math.min(speed, 0.05);
 		if (getLowerLimit())
-			v = Math.max(v, 0);
-		lifterMotor.set(v);
+			speed = Math.max(speed, 0);
+		lifterMotor.set(speed);
 
-		setSmartDashboard("lifter_actual_drive", v);
+		setSmartDashboard("lifter_actual_drive", speed);
 		setSmartDashboard("lifter_actual_high_limit", getUpperLimit());
 		setSmartDashboard("lifter_actual_low_limit", getLowerLimit());
 	}

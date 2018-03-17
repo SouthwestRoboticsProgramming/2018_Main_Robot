@@ -11,4 +11,9 @@ public interface PreferenceAware {
 	default double getPreferenceDouble(String preferenceName, double defaultVal) {
 		return getPreferences().getDouble(preferenceName, defaultVal);
 	}
+	
+	default int getPreferenceInt(String preferenceName, int defaultVal) {
+		return getPreferences().getInt(preferenceName, defaultVal);
+	}
+
 }

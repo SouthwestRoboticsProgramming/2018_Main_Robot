@@ -22,13 +22,13 @@ public class LightsSubsystem extends Subsystem implements PreferenceAware, Dashb
 	}
 	
 	public void setPWM(double v) {
-		light.setBounds(Preferences.getInstance().getDouble("lightpwm_max", 50),
+		light.setBounds(getPreferenceDouble("lightpwm_max", 50),
 				getPreferenceDouble("lightpwm_db_max", 26),
 				getPreferenceDouble("lightpwm_db_center", 25),
 				getPreferenceDouble("lightpwm_db_min", 24),
 				getPreferenceDouble("lightpwm_min", 0));
 	
-		int m = Preferences.getInstance().getInt("lightpwm_multiplier", 1);
+		int m = getPreferenceInt("lightpwm_multiplier", 1);
 		if(m==1) light.setPeriodMultiplier(PWM.PeriodMultiplier.k1X);
 		if(m==2) light.setPeriodMultiplier(PWM.PeriodMultiplier.k2X);
 		if(m==4) light.setPeriodMultiplier(PWM.PeriodMultiplier.k4X);

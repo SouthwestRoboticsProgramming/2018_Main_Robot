@@ -1,12 +1,12 @@
 package org.usfirst.frc.team2129.robot.commands.manual;
 
 import org.usfirst.frc.team2129.robot.OI;
+import org.usfirst.frc.team2129.robot.PreferenceAware;
 import org.usfirst.frc.team2129.robot.Robot;
 
-import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ManualIntakeCommand extends Command {
+public class ManualIntakeCommand extends Command implements PreferenceAware {
 
 	public ManualIntakeCommand() {
 		requires(Robot.s_IntakeSubsystem);
@@ -41,7 +41,7 @@ public class ManualIntakeCommand extends Command {
 		// else if (OI.leftStick.getRawButton(5)) {ldir=-1;rdir=1;}
 		// Robot.s_IntakeSubsystem.setArmsRaw(leftspeed*ldir, rightspeed*rdir);
 
-		double armSpeed = Preferences.getInstance().getDouble("intake_arm_speed", 0.5);
+		double armSpeed = getPreferenceDouble("intake_arm_speed", 0.5);
 		if (OI.leftStick.getRawButton(4)) {
 			Robot.s_IntakeSubsystem.setArmsRaw(-armSpeed, -armSpeed);
 			Robot.s_IntakeSubsystem.setIntakesRaw(-1, 1);

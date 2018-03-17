@@ -41,7 +41,7 @@ public class RobotMap implements IRobotMap {
 	private static RobotMap CurrentRobotMap = new RobotMap();
 	
 	static {
-		new Compressor(0).setClosedLoopControl(true);
+//		new Compressor(0).setClosedLoopControl(true);
 	}
 
 	public static IRobotMap getCurrent() {
@@ -104,7 +104,7 @@ public class RobotMap implements IRobotMap {
 		return grabberSolenoid;
 	}
 
-	public static RobotMap getCurrentRobotMap() {
+	public static IRobotMap getCurrentRobotMap() {
 		return CurrentRobotMap;
 	}
 	

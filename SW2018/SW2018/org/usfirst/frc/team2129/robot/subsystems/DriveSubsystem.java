@@ -7,18 +7,18 @@
 
 package org.usfirst.frc.team2129.robot.subsystems;
 
+import org.usfirst.frc.team2129.robot.Logger;
 import org.usfirst.frc.team2129.robot.RobotMapAware;
 import org.usfirst.frc.team2129.robot.commands.manual.AlexManualDriveCommand;
 
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import edu.wpi.first.wpilibj.drive.MecanumDrive;
 /**
  * An example subsystem.  You can replace me with your own Subsystem.
  */
 @SuppressWarnings("deprecation")
-public class DriveSubsystem extends Subsystem implements RobotMapAware {
+public class DriveSubsystem extends Subsystem implements RobotMapAware, Logger {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.4
 	
@@ -26,19 +26,24 @@ public class DriveSubsystem extends Subsystem implements RobotMapAware {
 	SpeedController backLeft   = getBackLeft().get();
 	SpeedController frontRight = getFrontRight().get();
 	SpeedController backRight  = getBackRight().get();
-	private RobotDrive      drive      = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
+	private MecanumDrive      drive      = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
+//	private RobotDrive      drive      = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
 
 	public void initDefaultCommand() {
 		drive.setSafetyEnabled(false);
 		// Set the default command for a subsystem here.
 		 setDefaultCommand(new AlexManualDriveCommand());
+//		 setDefaultCommand(new ManualDriveCommand());
 	}
 	
-	public void stdMecanumDrive(double x, double y, double t) {
-		drive.mecanumDrive_Cartesian(x, -y, t, 0);
+	public void stdMecanumDrive(double xSpeed, double ySpeed, double zRotation) {
+//		log("DRIVE xSpeed = " + xSpeed + "  ySpeed = " + ySpeed + "  zRotation" + zRotation);
+		drive.driveCartesian(-ySpeed, xSpeed, zRotation);
 	}
 	
 	public void rawDrive(double frontleft, double backleft, double frontright, double backright) {
+//		log("DRIVE frontleft = " + frontleft + "  Backleft = " + backleft + "  FrontRight" + frontright + "    BackRight: " + backright);
+		
 		frontLeft.set(frontleft);
 		frontRight.set(frontright);
 		backLeft.set(backleft);

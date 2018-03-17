@@ -7,15 +7,16 @@
 
 package org.usfirst.frc.team2129.robot.commands.manual;
 
-import edu.wpi.first.wpilibj.command.Command;
-
+import org.usfirst.frc.team2129.robot.Logger;
 import org.usfirst.frc.team2129.robot.OI;
 import org.usfirst.frc.team2129.robot.Robot;
+
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * An example command.  You can replace me with your own command.
  */
-public class ManualDriveCommand extends Command {
+public class ManualDriveCommand extends Command implements Logger {
 	public ManualDriveCommand() {
 		// Use requires() here to declare subsystem dependencies
 		requires(Robot.s_DriveSubsystem);
@@ -29,7 +30,7 @@ public class ManualDriveCommand extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.s_DriveSubsystem.stdMecanumDrive(-OI.leftStick.getX(), OI.leftStick.getY(), -OI.rightStick
+		Robot.s_DriveSubsystem.stdMecanumDrive(OI.leftStick.getX(), OI.leftStick.getY(), OI.rightStick
 				.getX()/2);
 	}
 

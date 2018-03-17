@@ -27,12 +27,12 @@ public class OI {
 	public static GenericHID lifterStick    = new Joystick(2);
 	
 	static {		
-		new JoystickButton(leftStick, 8).whenPressed(new ManualDriveCommand());
-		new JoystickButton(leftStick, 9).whenPressed(new AlexManualDriveCommand());
-		new JoystickButton(leftStick, 3).whileHeld(new ElevatorUpCommand());
-		new JoystickButton(leftStick, 2).whileHeld(new ElevatorDownCommand());
+//		new JoystickButton(leftStick, 8).whenPressed(new ManualDriveCommand());
+//		new JoystickButton(leftStick, 9).whenPressed(new AlexManualDriveCommand());
+//		new JoystickButton(leftStick, 3).whileHeld(new ElevatorUpCommand());
+//		new JoystickButton(leftStick, 2).whileHeld(new ElevatorDownCommand());
 		
-		new Compressor(0).setClosedLoopControl(true);
+//		new Compressor(0).setClosedLoopControl(true);
 	}
 	
 	public static boolean eitherStickButton(int b) {

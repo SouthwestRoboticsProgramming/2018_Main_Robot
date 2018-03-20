@@ -22,6 +22,10 @@ public class AlexManualDriveCommand extends Command implements Logger {
 //		Robot.s_DriveSubsystem.stdMecanumDrive(-OI.leftStick.getX(), OI.leftStick.getY(), -OI.rightStick
 //				.getX()/2);
 		
+		if(OI.leftStick.getRawButton(6)) {
+			Robot.s_DriveSubsystem.flowSensor.initCheck();
+		}
+		
 		try {
 			double leftStickY = OI.leftStick.getY();
 			double rightStickY = OI.rightStick.getY();

@@ -10,7 +10,9 @@ package org.usfirst.frc.team2129.robot.subsystems;
 import org.usfirst.frc.team2129.robot.Logger;
 import org.usfirst.frc.team2129.robot.RobotMapAware;
 import org.usfirst.frc.team2129.robot.commands.manual.AlexManualDriveCommand;
+import org.usfirst.frc.team2129.util.pwm3901.PWM3901;
 
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
@@ -27,6 +29,7 @@ public class DriveSubsystem extends Subsystem implements RobotMapAware, Logger {
 	SpeedController frontRight = getFrontRight().get();
 	SpeedController backRight  = getBackRight().get();
 	private MecanumDrive      drive      = new MecanumDrive(frontLeft, backLeft, frontRight, backRight);
+	public PWM3901 flowSensor = new PWM3901(SPI.Port.kOnboardCS3);
 //	private RobotDrive      drive      = new RobotDrive(frontLeft, backLeft, frontRight, backRight);
 
 	public void initDefaultCommand() {
